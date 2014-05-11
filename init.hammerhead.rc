@@ -247,7 +247,7 @@ on charger
     mount vfat /dev/block/platform/msm_sdcc.1/by-name/modem /firmware ro shortname=lower,uid=1000,gid=1000,dmask=227,fmask=337
     wait /dev/block/platform/msm_sdcc.1/by-name/system
     mount ext4 /dev/block/platform/msm_sdcc.1/by-name/system /system ro barrier=1
-    # start rmt_storage
+    start rmt_storage
     start irsc_util
 
     # Enable Power modes and set the CPU Freq Sampling rates
@@ -303,9 +303,9 @@ on property:sys.boot_completed=1
     write /sys/module/msm_pm/modes/cpu3/retention/idle_enabled 1
     start mpdecision
 
-#service rmt_storage /system/bin/rmt_storage
-#    class core
-#    user root
+service rmt_storage /system/bin/rmt_storage
+    class core
+    user root
 
 service bridgemgrd /system/bin/bridgemgrd
     class main
